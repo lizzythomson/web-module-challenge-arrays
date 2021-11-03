@@ -288,11 +288,13 @@ const regionalFlavors = [
 
 function getRandomFlavors(array1, array2, array3, array4) {
   const allFlavors = array1.concat(array2, array3, array4);
-  let newFlavorsArr = [];
-  for (let i = 0; i <= 31; i++) {
-    newFlavorsArr.push(
-      allFlavors[Math.floor(Math.random() * allFlavors.length)]
-    );
+  const newFlavorsArr = [];
+  while (newFlavorsArr.length < 31) {
+    const randomIndex = Math.floor(Math.random() * allFlavors.length);
+    if (!newFlavorsArr.includes(allFlavors[randomIndex])) {
+      newFlavorsArr.push(allFlavors[randomIndex]);
+    }
+    allFlavors.splice(randomIndex, 1);
   }
 
   return newFlavorsArr;
